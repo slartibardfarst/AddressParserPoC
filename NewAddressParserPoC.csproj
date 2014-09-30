@@ -41,9 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddressEx.cs" />
     <Compile Include="AddressParser.cs" />
+    <Compile Include="ParsingRule.cs" />
+    <Compile Include="Play.cs" />
+    <Compile Include="Predicate.cs" />
+    <Compile Include="Predicates.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RulesManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
