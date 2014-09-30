@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="AddressEx.cs" />
     <Compile Include="AddressParser.cs" />
+    <Compile Include="AddressParser2.cs" />
     <Compile Include="ParsingRule.cs" />
     <Compile Include="Play.cs" />
     <Compile Include="Predicate.cs" />

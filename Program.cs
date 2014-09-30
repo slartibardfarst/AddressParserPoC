@@ -11,8 +11,11 @@ namespace NewAddressParserPoC
         static void Main(string[] args)
         {
             //AddressParser parser = new AddressParser();
-            Play play = new Play();
-            play.Go();
+
+            //Play play = new Play();
+            //play.Go();
+
+            AddressParser2 ap2 = new AddressParser2();
         }
     }
 
