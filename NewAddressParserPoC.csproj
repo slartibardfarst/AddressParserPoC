@@ -47,6 +47,7 @@
     <Compile Include="AddressEx.cs" />
     <Compile Include="AddressParser.cs" />
     <Compile Include="AddressParser2.cs" />
+    <Compile Include="Try3\AddressParser3.cs" />
     <Compile Include="ParsingRule.cs" />
     <Compile Include="Play.cs" />
     <Compile Include="Predicate.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RulesManager.cs" />
+    <Compile Include="Try3\TokenParser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
