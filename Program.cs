@@ -10,6 +10,7 @@ namespace NewAddressParserPoC
     {
         static void Main(string[] args)
         {
+            string s = string.Format("{0}{1}", null, "not null");
             //AddressParser parser = new AddressParser();
 
             //Play play = new Play();
