@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NewAddressParserPoC.Try3
 {
-    class TokenParser
+    public class TokenParser
     {
         public int Arity { get; private set; }
 
@@ -33,7 +33,7 @@ namespace NewAddressParserPoC.Try3
         }
 
 
-        public bool TryParse(List<string> tokens, AddressEx acc, ref int i)
+        public bool IsTokenMatch(string[] tokens, AddressEx acc, ref int i)
         {
             bool result = false;
 
@@ -41,17 +41,20 @@ namespace NewAddressParserPoC.Try3
             {
                 case 1:
                     result = f1(tokens[i], acc);
-                    i += 1;
+                    if (result)
+                        i += 1;
                     break;
 
                 case 2:
                     result = f2(tokens[i], tokens[i + 1], acc);
-                    i += 2;
+                    if (result)
+                        i += 2;
                     break;
 
                 case 3:
                     result = f3(tokens[i], tokens[i + 1], tokens[i + 2], acc);
-                    i += 3;
+                    if (result)
+                        i += 3;
                     break;
 
                 default:

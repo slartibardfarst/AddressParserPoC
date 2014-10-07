@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace NewAddressParserPoC.Try3
 {
-    public static class TokenParserImplementations
+    public static class TokenParsers
     {
+        private static StandardAbbreviations _abbr = new StandardAbbreviations();
+
         public static bool StreetNumber_1(string token, AddressEx acc)
         {
             if (Regex.IsMatch(token, @"^\d+$"))
@@ -34,7 +36,7 @@ namespace NewAddressParserPoC.Try3
 
         public static bool Suffix_1(string token, AddressEx acc)
         {
-            if (Regex.IsMatch(token, @"Street|St|Avenue|Ave", RegexOptions.IgnoreCase))
+            if (_abbr.AllStreetSuffixes.Contains(token.ToLower()))
             {
                 acc.street_suffix = token;
                 return true;
@@ -89,6 +91,16 @@ namespace NewAddressParserPoC.Try3
             return false;
         }
 
+        public static bool Dir_1(string token, AddressEx acc)
+        {
+            if (_abbr.AllDirectionals.Contains(token.ToLower()))
+            {
+                acc.street_direction = token;
+                return true;
+            }
+
+            return false;
+        }
 
     }
 }

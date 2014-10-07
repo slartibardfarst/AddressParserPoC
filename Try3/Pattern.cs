@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NewAddressParserPoC.Try3
 {
-    class Pattern
+    public class Pattern
     {
         public int NumTokensInPattern {get; private set;}
         public List<TokenParser> PatternItems { get; private set; }
