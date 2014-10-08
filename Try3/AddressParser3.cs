@@ -22,6 +22,8 @@ namespace NewAddressParserPoC
             TokenParser state_1 = new TokenParser(TokenParsers.State_1);
             TokenParser zip_1 = new TokenParser(TokenParsers.Zip_1);
             TokenParser dir_1 = new TokenParser(TokenParsers.Dir_1);
+            TokenParser unit_desc_1 = new TokenParser(TokenParsers.UnitDesc_1);
+            TokenParser unit_value_1 = new TokenParser(TokenParsers.UnitValue_1);
 
             _patterns = new List<Pattern>
             {
@@ -29,7 +31,10 @@ namespace NewAddressParserPoC
                new Pattern (new List<TokenParser> {street_no_1, street_1, suffix_1, city_2, state_1, zip_1 }),
                new Pattern (new List<TokenParser> {street_no_1, street_1, city_1, state_1, zip_1 }),
                new Pattern (new List<TokenParser> {street_no_1, street_1, city_2, state_1, zip_1 }),
-               new Pattern (new List<TokenParser> {street_no_1, dir_1, street_1, suffix_1, city_1, state_1, zip_1 })
+               new Pattern (new List<TokenParser> {street_no_1, dir_1, street_1, suffix_1, city_1, state_1, zip_1 }),
+               new Pattern (new List<TokenParser> {city_1, state_1, zip_1 }),
+               new Pattern (new List<TokenParser> {city_2, state_1, zip_1 }),
+               new Pattern (new List<TokenParser> {street_no_1, street_1, suffix_1, unit_desc_1, unit_value_1, city_1, state_1, zip_1 }),
             };
         }
 
@@ -58,8 +63,18 @@ namespace NewAddressParserPoC
 
         private string[] BreakStringIntoTokens(string addressString)
         {
-            var result = addressString.Split(new char[] { ' ', ',' });
-            return result;
+
+            var items = addressString.Split(new char[] { ' ', ',' });
+
+            List<string> nonNullTokens = new List<string>();
+            foreach (var token in items)
+            {
+                var t = token.Trim();
+                if (!string.IsNullOrEmpty(t))
+                    nonNullTokens.Add(t);
+            }
+
+            return nonNullTokens.ToArray();
         }
 
         private bool IsPatternMatch(Pattern pattern, string[] tokens, out AddressEx match)

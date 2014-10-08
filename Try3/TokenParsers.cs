@@ -101,6 +101,27 @@ namespace NewAddressParserPoC.Try3
 
             return false;
         }
+        public static bool UnitDesc_1(string token, AddressEx acc)
+        {
+            var cleansed = token.ToLower().Trim(new char[] { ':' });
+            if (_abbr.AllUnitDescriptors.Contains(cleansed))
+            {
+                acc.unitDescriptor = token;
+                return true;
+            }
 
+            return false;
+        }
+
+        public static bool UnitValue_1(string token, AddressEx acc)
+        {
+            if (!string.IsNullOrEmpty(token))
+            {
+                acc.unitValue = token;
+                return true;
+            }
+
+            return false;
+        }
     }
 }

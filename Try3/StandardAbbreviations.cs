@@ -327,6 +327,26 @@ namespace NewAddressParserPoC.Try3
             wells,wls:wls;
             ";
 
+        string unitDescriptors = @"#,
+                unit,
+                lot,
+                apt,
+                ste,
+                ph,
+                spc,
+                trlr,
+                slip,
+                fl,
+                rm,
+                dept,
+                apartment,
+                floor,
+                suite,
+                room,
+                department,
+                space,
+                penthouse";
+
 
         private const string _numberedCityNamesMap = @"29 palms:twentynine palms";
         #endregion //Data
@@ -346,6 +366,7 @@ namespace NewAddressParserPoC.Try3
         private List<string> _allNumberedStreetNames;
         private List<string> _allTwoWordNumberedStreetNames;
         private List<string> _allCommonStreetNamesContainingAnd;
+        private List<string> _allUnitDescriptors;
 
         public Dictionary<string, string> StatesMap { get { return _dictStates; } }
         public Dictionary<string, string> NumberedStreetNamesMap { get { return _dictNumberedStreetNames; } }
@@ -363,10 +384,25 @@ namespace NewAddressParserPoC.Try3
         public List<string> AllTwoWordNumberedStreetNames { get { return _allTwoWordNumberedStreetNames; } }
         public List<string> AllCommonStreetNamesContainingAnd { get { return _allCommonStreetNamesContainingAnd; } }
 
+        public List<string> AllUnitDescriptors { get { return _allUnitDescriptors; } }
+
 
         public StandardAbbreviations()
         {
             InitializeDictionaries();
+        }
+
+        private void LoadAllUnitDescriptors()
+        {
+            var items = unitDescriptors.Split(new char[]{','});
+
+            _allUnitDescriptors = new List<string>();
+            foreach(var item in items)
+            {
+                var el = item.Trim();
+                if (!string.IsNullOrEmpty(el))
+                    _allUnitDescriptors.Add(el);
+            }
         }
 
 
@@ -461,8 +497,10 @@ namespace NewAddressParserPoC.Try3
             LoadAllNumberedStreetNames();
             LoadAllTwoWordNumberedStreetNames();
             LoadAllCommonStreetNamesContainingAnd();
+            LoadAllUnitDescriptors();
             //_dictstreetSuffixShortList = new List<string>(StreetSuffixShortList.Split(','));
         }
+
 
 
         private void LoadDictionaryMap(ref Dictionary<string, string> dict, string definition)

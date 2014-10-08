@@ -176,6 +176,9 @@ namespace NewAddressParserPoC
                 this.address_line = string.Join(" and ", CleanseEl(addressLineToSet), CleanseEl(crossStreet));
             else
                 this.address_line = CleanseEl(addressLineToSet);
+
+            if (string.IsNullOrEmpty(this.address_line))
+                this.address_line = null;
         }
 
         private static string BuildAddressLine(Address address)
