@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Management.Instrumentation;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -10,6 +11,17 @@ namespace NewAddressParserPoC.Try3
     public static class TokenParsers
     {
         private static StandardAbbreviations _abbr = new StandardAbbreviations();
+
+        public static bool Predirectional_1(string token, AddressEx acc)
+        {
+            if (_abbr.AllDirectionals.Contains(token.ToLower()))
+            {
+                acc.street_direction = token;
+                return true;
+            }
+
+            return false;
+        }
 
         public static bool StreetNumber_1(string token, AddressEx acc)
         {
@@ -27,6 +39,17 @@ namespace NewAddressParserPoC.Try3
             if (Regex.IsMatch(token, @"^\w+$"))
             {
                 acc.street = token;
+                return true;
+            }
+
+            return false;
+        }
+
+        public static bool Street_2(string token1, string token2, AddressEx acc)
+        {
+            if (Regex.IsMatch(token1, @"^\w+$") && Regex.IsMatch(token2, @"^\w+$"))
+            {
+                acc.street = string.Format("{0} {1}", token1, token2);
                 return true;
             }
 
